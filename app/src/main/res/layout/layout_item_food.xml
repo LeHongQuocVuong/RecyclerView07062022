@@ -31,7 +31,7 @@
             android:textColor="#ffff"
             android:textAlignment="center"
             android:gravity="center"
-            tools:text="Đóng cửa \n Đặt bàn vào lúc 12h:30"
+            android:text="Đóng cửa \n Đặt bàn vào lúc 12h:30"
             android:background="#66000000"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -81,12 +81,14 @@
             app:layout_constraintTop_toBottomOf="@id/text_view_address"
             app:layout_constraintStart_toEndOf="@+id/image_view"
             app:layout_constraintBottom_toTopOf="@+id/text_view_discount"
+            app:layout_constraintHorizontal_bias="0"
             android:id="@+id/text_view_service_kind"
-            android:ellipsize="end"
             android:textSize="15sp"
+            android:ellipsize="end"
+            android:maxWidth="200dp"
             android:maxLines="1"
             tools:text="Nhà Hàng - Sinh nhật"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
         <TextView
@@ -102,12 +104,12 @@
             android:ellipsize="end"
             android:maxLines="1"
             tools:text="Cả ngày - giảm 20%"
-            tools:drawableLeftCompat="@drawable/ic_new"
+            android:drawableLeft="@drawable/ic_new"
             android:layout_width="0dp"
             android:layout_height="wrap_content"/>
 
         <TextView
-            app:layout_constraintHorizontal_bias="0.9"
+            app:layout_constraintHorizontal_bias="0.98"
             app:layout_constraintVertical_bias="0.8"
             android:textAlignment="center"
             android:textColor="#A1A0A0"
