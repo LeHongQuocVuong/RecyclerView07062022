@@ -1,5 +1,6 @@
 package com.example.recyclerview07062022;
 
+import android.content.Context;
 import android.text.SpannableStringBuilder;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -7,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -17,9 +19,13 @@ import java.util.List;
 public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder> {
 
     List<Food> foodList;
+    Context context;
+    OnListenerItemClick onListenerItemClick;
 
-    public FoodAdapter(List<Food> foodList) {
+    public FoodAdapter(List<Food> foodList, Context context) {
+
         this.foodList = foodList;
+        this.context = context;
     }
 
     @NonNull
@@ -59,6 +65,13 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
             tvDistance = itemView.findViewById(R.id.text_view_distance);
             tvDiscount = itemView.findViewById(R.id.text_view_discount);
             img = itemView.findViewById(R.id.image_view);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    onListenerItemClick.onClick(getAdapterPosition());
+                }
+            });
         }
 
         public void bind(Food food){
@@ -132,5 +145,13 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
 
     private boolean checkCurrentTimeOver(int timeOpen, int timeCurrent, int timeClose) {
         return ((timeCurrent < timeOpen) || (timeClose < timeCurrent));
+    }
+
+    public void setOnClickListener(OnListenerItemClick onListenerItemClick){
+        this.onListenerItemClick = onListenerItemClick;
+    }
+
+    interface OnListenerItemClick{
+        void onClick(int position);
     }
 }
